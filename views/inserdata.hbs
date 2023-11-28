@@ -1,0 +1,123 @@
+<style>
+  /* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+header, footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Adjust the width as needed */
+  margin-top: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input {
+  width: calc(100% - 16px); /* Adjust the input width */
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+</style>
+
+<h2>Add a New Invoice</h2>
+
+<form action="/api/supersale" method="post">
+  <label for="invoiceID">Invoice ID:</label>
+  <input type="text" name="InvoiceID" required>
+
+  <label for="branch">Branch:</label>
+  <input type="text" name="Branch" required>
+
+  <label for="city">City:</label>
+  <input type="text" name="City" required>
+
+  <label for="customerType">Customer Type:</label>
+  <input type="text" name="CustomerType" required>
+
+  <label for="productLine">Product Line:</label>
+  <input type="text" name="ProductLine" required>
+
+  <label for="name">Product Name:</label>
+  <input type="text" name="name" required>
+
+  <label for="image">Image URL:</label>
+  <input type="text" name="image" required>
+
+  <label for="Unitprice">Unit Price:</label>
+  <input type="number" name="Unitprice" step="0.01" required>
+
+  <label for="quantity">Quantity:</label>
+  <input type="number" name="Quantity" required>
+
+  <label for="Tax5">Tax 5%:</label>
+  <input type="number" name="Tax5" step="0.01" required>
+
+  <label for="total">Total:</label>
+  <input type="number" name="Total" step="0.01" required>
+
+  <label for="Date">Date:</label>
+  <input type="text" name="Date" required>
+
+  <label for="Time">Time:</label>
+  <input type="text" name="Time" required>
+
+  <label for="payment">Payment Method:</label>
+  <input type="text" name="Payment" required>
+
+  <label for="cogs">Cost of Goods Sold:</label>
+  <input type="number" name="cogs" step="0.01" required>
+
+  <label for="grossIncome">Gross Income:</label>
+  <input type="number" name="grossIncome" step="0.01" required>
+
+  <label for="rating">Rating:</label>
+  <input type="number" name="Rating" step="0.1" required>
+
+  <button type="submit">Submit</button>
+</form>

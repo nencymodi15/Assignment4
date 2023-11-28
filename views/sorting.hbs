@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoices</title>
+</head>
+<body>
+
+  <h1>Invoices</h1>
+
+  <label for="sortBy">Sort By:</label>
+  <select id="sortBy">
+    <option value="Date">Date</option>
+    <option value="Total">Total Amount</option>
+    <!-- Add more options based on your criteria -->
+  </select>
+
+  <label for="sortOrder">Sort Order:</label>
+  <select id="sortOrder">
+    <option value="asc">Ascending</option>
+    <option value="desc">Descending</option>
+  </select>
+
+  <label for="branch">Filter by Branch:</label>
+  <input type="text" id="branch" placeholder="Enter branch name">
+
+  <button onclick="getInvoices()">Apply Filters</button>
+
+  <div id="invoices-container">
+    {{#each invoices}}
+      <p>{{this}}</p>
+    {{/each}}
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+  <script>
+    // Sample data
+    const data = {
+      invoices: [
+        // Your invoice data here
+        // Each invoice should be an object with properties like InvoiceID, Date, Total, etc.
+      ]
+    };
+
+    // Compile Handlebars template
+    const source = document.getElementById('invoices-template').innerHTML;
+    const template = Handlebars.compile(source);
+
+    // Render initial data
+    document.getElementById('invoices-container').innerHTML = template(data);
+
+    function getInvoices() {
+      const sortBy = $('#sortBy').val();
+      const sortOrder = $('#sortOrder').val();
+      const branch = $('#branch').val();
+
+      // Send a request to the server with the selected options
+      $.ajax({
+        method: 'GET',
+        url: `/api/supersale?sortBy=${sortBy}&sortOrder=${sortOrder}&branch=${branch}`,
+        success: function (data) {
+          // Update the content of the invoices container with the filtered data
+          document.getElementById('invoices-container').innerHTML = template({ invoices: data });
+        },
+        error: function (error) {
+          console.error('Error fetching invoices:', error);
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
